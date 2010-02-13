@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "PolygonShape.h"
 void PrintPathInfo(){
 	NSString *path = [@"~" stringByExpandingTildeInPath];
 	NSLog(@"Mi carpeta home es '%@'",path);
@@ -45,7 +46,27 @@ void PrintIntrospectionInfo(){
 		NSLog(@"============================================");
 	}
 }
-					  
+
+void PrintPolygon(){
+	NSMutableArray *array =[NSMutableArray array];
+	PolygonShape *polygon1= [[PolygonShape alloc] init];
+	[polygon1 autorelease];
+	PolygonShape *polygon2= [[PolygonShape alloc] initWithNumberOfSides:4 minimumNumberOfSides:3 maximumNumberOfSides:7];
+	[polygon2 autorelease];
+	PolygonShape *polygon3 =[[PolygonShape alloc] initWithNumberOfSides:6 minimumNumberOfSides:5 maximumNumberOfSides:9];
+	[polygon3 autorelease];
+	PolygonShape *polygon4 =[[PolygonShape alloc] initWithNumberOfSides:12 minimumNumberOfSides:9 maximumNumberOfSides:12];
+	[polygon4 autorelease];
+	[array addObject:polygon1];
+	[array addObject:polygon2];
+	[array addObject:polygon3];
+	[array addObject:polygon4];
+	for (int i =0; i<[array count]; i++){
+		PolygonShape *polygon=[array objectAtIndex:i];
+		NSLog([polygon description]);
+	}
+}
+
 int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
@@ -54,6 +75,7 @@ int main (int argc, const char * argv[]) {
 	PrintProcessInfo();
 	PrintBookmarkInfo();
 	PrintIntrospectionInfo();
+	PrintPolygon();
     [pool release];
     return 0;
 }
